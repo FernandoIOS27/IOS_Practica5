@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="WebService" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jxb-dH-OPU">
+                                <rect key="frame" x="95" y="135" width="200" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" identifier="$TextViewWidth$" id="B1Q-Qc-X1F"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Repertorio de Música" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ek1-7M-ZaI">
+                                <rect key="frame" x="114" y="94" width="162" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" identifier="$TitleLabelHeight$" id="5LD-iw-e5x"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rgQ-9D-qKL">
+                                <rect key="frame" x="160.66666666666666" y="184" width="69" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Buscar"/>
+                                <connections>
+                                    <action selector="searchButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SpK-Pe-Irr"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="EpM-Ej-kkD">
+                                <rect key="frame" x="5" y="220" width="380" height="595"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="380" identifier="$TableViewWidth$" id="4GJ-q7-boc"/>
+                                </constraints>
+                            </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="FLR-ZL-Svp">
+                                <rect key="frame" x="185" y="412" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="EpM-Ej-kkD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" identifier="$TableViewCenterX$" id="0w9-xw-z6h"/>
+                            <constraint firstItem="ek1-7M-ZaI" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" identifier="$LabelToptoSafeArea$" id="2cz-KD-qF4"/>
+                            <constraint firstItem="EpM-Ej-kkD" firstAttribute="top" secondItem="rgQ-9D-qKL" secondAttribute="bottom" constant="5" identifier="$SearchTableViewtopButtomBottom$" id="AAD-Ri-vHH"/>
+                            <constraint firstItem="ek1-7M-ZaI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" identifier="$SearchLabelCenterX$" id="IFe-h2-59Q"/>
+                            <constraint firstItem="EpM-Ej-kkD" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="5" identifier="$TableViewBottomSafeAreaBottom$" id="JLw-lX-aEg"/>
+                            <constraint firstItem="Jxb-dH-OPU" firstAttribute="top" secondItem="ek1-7M-ZaI" secondAttribute="bottom" constant="20" identifier="$SearchTextFieldTopToSearchLabelBottom$" id="NEA-WX-SCY"/>
+                            <constraint firstItem="FLR-ZL-Svp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" identifier="$LoaderViewCenterX$" id="XIS-qt-Ffn"/>
+                            <constraint firstItem="rgQ-9D-qKL" firstAttribute="top" secondItem="Jxb-dH-OPU" secondAttribute="bottom" constant="15" identifier="$SearchButtontopSearchTextField$" id="bNa-T6-Vne"/>
+                            <constraint firstItem="rgQ-9D-qKL" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" identifier="$SearchButtomCenterX$" id="cec-EJ-Mbf"/>
+                            <constraint firstItem="FLR-ZL-Svp" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" identifier="$LoaderViewCenterY$" id="w37-4N-4fz"/>
+                            <constraint firstItem="Jxb-dH-OPU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" identifier="$SearchTextFieldCenterX$" id="zly-Re-J3d"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="loaderView" destination="FLR-ZL-Svp" id="3Jr-ak-W7x"/>
+                        <outlet property="searchButton" destination="rgQ-9D-qKL" id="SDB-pR-2yw"/>
+                        <outlet property="searchItemsTableView" destination="EpM-Ej-kkD" id="6qx-RQ-BnV"/>
+                        <outlet property="searchLabel" destination="ek1-7M-ZaI" id="Koo-lV-f4S"/>
+                        <outlet property="searchTextField" destination="Jxb-dH-OPU" id="WJH-b9-DKO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-26.086956521739133" y="43.526785714285715"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
