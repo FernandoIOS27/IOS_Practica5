@@ -141,6 +141,10 @@ class ViewController: UIViewController {
             self.searchItemsTableView.reloadData()
         }
     }
+    
+    func fixError(){
+        print("ERROR FIXED")
+    }
 
 }
 
