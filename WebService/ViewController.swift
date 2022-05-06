@@ -145,6 +145,10 @@ class ViewController: UIViewController {
     func fixError(){
         print("ERROR FIXED")
     }
+    
+    func newCode(){
+        print("NEW CODE")
+    }
 
 }
 
