@@ -5,39 +5,49 @@
 //  Created by Luis Fernando Cuevas Cuauhtle on 2/5/22.
 //
 
+// MARK: FRAMEWORKS
+
 import UIKit
+
+// MARK: MAIN CLASS
 
 class ItemTableViewCell: UITableViewCell {
     
-    // MARK: Outlets
-    
-    @IBOutlet weak var artistNameLabel: UILabel!
-    @IBOutlet weak var priceLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var copyrightLabel: UILabel!
-    
-    func setUpWith(searchItem: SearchItem){
-        
-        descriptionLabel.numberOfLines = 0
-        descriptionLabel.text = searchItem.description
-        
-        artistNameLabel.text = searchItem.artistName
-        
-        copyrightLabel.text = searchItem.copyright
-        if let price = searchItem.price, let currency = searchItem.currency {
-            priceLabel.text = "\(price) \(currency)"}
-    }
+    // MARK: CELL LIFE CYCLE
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+    }
+
+    
+    // MARK: Outlets
+    
+    @IBOutlet weak var currencyLabel: UILabel!
+    @IBOutlet weak var symbolLabel: UILabel!
+    @IBOutlet weak var currentRateLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var precisionRateLabel: UILabel!
+    
+    // MARK: FUNCTIONS
+    
+    func initialSetUP(currency: CurrenciesRate){
+        
+        currencyLabel.text = currency.code
+        
+        descriptionLabel.text = currency.description
+        
+        symbolLabel.text = currency.symbol
+        
+        currentRateLabel.text = currency.rate
+        
+        precisionRateLabel.text = "\(currency.rate_float)"
     }
 
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
+        
     }
     
 }
