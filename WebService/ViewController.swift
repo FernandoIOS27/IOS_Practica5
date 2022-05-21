@@ -16,8 +16,17 @@ class ViewController: UIViewController {
     
     // MARK: PROPERTIES
     
-    // Arreglo de SearchItems - Por lo mientras lo inicializamos como vacio
-    var currenciesRates: [CurrenciesRate] = []
+        // CRYPTO NAME & DISCLAIMER
+        let cryptocurrencyName: String! = ""
+        let disclaimerInfo: String! = ""
+        // ARRAY OF CURRENCIES
+        var currencies: Currencies = Currencies(currencyData: [])
+        // ARRAY OF CURRENCIES DATA
+        var currenciesData: [Currencydata] = []
+        // ARRAY OF TIME DATA
+        var timeData: Time = Time(updated: "", updatedISO: "", updateduk: "")
+        
+        let cryptoInfo: SearchResult = SearchResult(time: Time(updated: "", updatedISO: "", updateduk: ""), disclaimer: "", chartName: "", bpi: Currencies(currencyData: []))
     
     // MARK: OUTLETS
 
@@ -36,7 +45,6 @@ class ViewController: UIViewController {
         override func viewDidLoad() {
             super.viewDidLoad()
             // Do any additional setup after loading the view.
-            setUpUI()
             setUpTableView()
             
         }
@@ -46,9 +54,19 @@ class ViewController: UIViewController {
         // MARK: INITIAL UI CONFIGURATION
 
         func setUpUI(){
-            // Escondemos el ActivityIndicatorView
+            // ACTIVITY INDICATOR NO LOADING HIDDING
             loaderView.stopAnimating()
             loaderView.isHidden = true
+        }
+    
+        // MARK: CRYPTOCURRENCY INFO
+    
+        func setUpGeneralInfo(timeInfo: Time, generalInfo: SearchResult ){
+            
+            cryptoNameLabel.text = generalInfo.chartName
+            lastUpdateLabel.text = timeInfo.updated
+            disclaimerLabel.text = generalInfo.disclaimer
+            
         }
         
         // MARK: LOADER SETUP
@@ -119,12 +137,15 @@ class ViewController: UIViewController {
                 let decoder = JSONDecoder()
                 
                 // ATTEMPT FOR DECODING OF SELFMADE STRUCT
-                let response = try decoder.decode(SearchResult.self, from: data)
+                let allCurrencies = try decoder.decode(SearchResult.self, from: data)
                 
-                print("DECODED RESPONSE: \(response)")
+                print("DECODED RESPONSE: \(allCurrencies)")
+                print("CRYPTOCURRENCY NAME: \(allCurrencies.chartName)")
+                print("DISCLAIMER: \(allCurrencies.disclaimer)")
                 
-                //searchItems = response.results
-                //currenciesRates = response.chartName
+                currencies = allCurrencies.bpi
+                currenciesData = currencies.currencyData
+                
                 reloadTableView()
                 
             } catch {
@@ -154,7 +175,7 @@ class ViewController: UIViewController {
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             
             //
-            return currenciesRates.count
+            return currenciesData.count
         }
         
         // ASSIGNMENT OF DATA TO CELL
@@ -163,9 +184,9 @@ class ViewController: UIViewController {
             // TAKES REUSABLE CELL DEFINED IN TABLEVIEW SETUP AND ASSIGNS VALUES
             if let cell = tableView.dequeueReusableCell(withIdentifier: "ItemTableViewCell", for: indexPath) as? ItemTableViewCell {
                 
-                let currencies = currenciesRates[indexPath.row]
+                let currencyInfo = currenciesData[indexPath.row]
                 
-                cell.setUpCellWith(currency: currencies)
+                cell.setUpCellWith(currency: currencyInfo)
 
                 return cell
             
