@@ -8,9 +8,15 @@
 import Foundation
 
 struct SearchResult: Codable{
-    let results: [SearchItem]
+    let time: [Time]
+    let disclaimer: String
+    let chartName: String
+    let bpi: [Currencies]
     
     enum CodingKeys: String,CodingKey {
-        case results
+        case time
+        case disclaimer
+        case chartName
+        case currencies = "bpi"
     }
 }
