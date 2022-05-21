@@ -17,165 +17,161 @@ class ViewController: UIViewController {
     // MARK: PROPERTIES
     
     // Arreglo de SearchItems - Por lo mientras lo inicializamos como vacio
-    var searchItems: [SearchItem] = []
+    var currenciesRates: [CurrenciesRate] = []
     
     // MARK: OUTLETS
 
-    @IBOutlet weak var searchLabel: UILabel!
-    @IBOutlet weak var searchTextField: UITextField!
-    @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet weak var cryptoNameLabel: UILabel!
+    @IBOutlet weak var lastUpdateLabel: UILabel!
+    @IBOutlet weak var disclaimerLabel: UILabel!
     @IBOutlet weak var searchItemsTableView: UITableView!
     @IBOutlet weak var loaderView: UIActivityIndicatorView!
     
     // MARK: ACTIONS
     
-    @IBAction func searchButtonPressed(_ sender: Any) {
-        guard let text = searchTextField.text, !text.isEmpty else {return}
-        // Después de haber definido como variable "text" aquello que el usuario escriba en el TextView, lo tomaremos como entrada en la función de saveSearch
-        saveLastSearch(text: text)
-        setUpLoader(isLoading: true)
-        searchInItunes(text: text)
-        
-    }
+    
     
     // MARK: APP LIFE CYCLE
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        setUpUI()
-        setUpTableView()
-        getLastSearch()
-    }
-    
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            // Do any additional setup after loading the view.
+            setUpUI()
+            setUpTableView()
+            
+        }
+        
     // MARK: METHODS & FUNCTIONS
     
-    // Configuración Inicial de Objetos y variables
-    func setUpUI(){
-        // Escondemos el ActivityIndicatorView
-        loaderView.stopAnimating()
-        loaderView.isHidden = true
-    }
-    
-    // Animación de Loading View - Muestra u oculta el Loader
-    func setUpLoader(isLoading: Bool){
-        // Al poner el "!" Estamos negando un valor (True lo mostrará)
-        loaderView.isHidden = !isLoading
-        isLoading ? loaderView.startAnimating(): loaderView.stopAnimating()
-    }
-    
-    // Configuración de Vista de Tabla - Registro de la Celda
-    func setUpTableView(){
-        searchItemsTableView.register(UINib(nibName: "ItemTableViewCell", bundle: .main), forCellReuseIdentifier: "ItemTableViewCell")
-        // Quién será el data source de las celdas
-        searchItemsTableView.dataSource = self
-        
-    }
-    
-    // Guardado de Última Búsqueda - Recibimos un texto que será el que guardaremos
-    func saveLastSearch(text: String) {
-        // Creamos una referencia a las UserDefaults llamado defaults
-        let defaults = UserDefaults.standard
-        // Setteamos el valor de los userDefaults Standard - Guardamos el texto, con una llave para poder identificarlo dentro de todas las User Defaults
-        defaults.set(text, forKey: "LastSearch")
-    }
-    
-    // Obtención de Última Búsqueda
-    func getLastSearch(){
-        // Creamos una constante que obtiene todas las cookies (Los UserDefaults guardados en la aplicación) Referencia a las UserDefaults
-        let defaults = UserDefaults.standard
-        // Y por medio de la constante lasSearch accedemos a la cookie que nombramos con la key Last Search y la convertimos a String
-        if let lastSearch = defaults.object(forKey: "LastSearch") as? String {
-            print("LAST SEARCH: \(lastSearch)")
-            // Se pone el texto de la Cookie seleccionada en el TextField
-            searchTextField.text = lastSearch
+        // MARK: INITIAL UI CONFIGURATION
+
+        func setUpUI(){
+            // Escondemos el ActivityIndicatorView
+            loaderView.stopAnimating()
+            loaderView.isHidden = true
         }
-    }
+        
+        // MARK: LOADER SETUP
+        
+        func setUpLoader(isLoading: Bool){
+            // Al poner el "!" Estamos negando un valor (True lo mostrará)
+            loaderView.isHidden = !isLoading
+            isLoading ? loaderView.startAnimating(): loaderView.stopAnimating()
+        }
+        
+        // MARK: LINK BETWEEN TABLEVIEW AND CELL CONTROLLER AND VIEW OF NIB
     
-    // Petición de Datos a Servicio Web
-    func searchInItunes(text: String){
+        func setUpTableView(){
+            
+            searchItemsTableView.register(UINib(nibName: "ItemTableViewCell", bundle: .main), forCellReuseIdentifier: "ItemTableViewCell")
+            
+            // DATASOURCE WOULD BE THE TABLEVIEW ITSELF
+            searchItemsTableView.dataSource = self
+            
+        }
         
-        guard let url = URL(string: "https://itunes.apple.com/search?term=\(text)") else {return}
+        // MARK: WEB SERVICE REQUEST VIA API
         
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            if let data = data {
-                print("Data: \(data)")
-                print("String: \(String(decoding: data, as: UTF8.self))")
-                self.decodeJSONResponse(data: data)
-            }
-            if let response = response {
-                print("Response: \(response)")
-                if let httpResponse = response as? HTTPURLResponse {
-                    print("HTTP Code: \(httpResponse.statusCode)")
+        func searchInItunes(){
+            
+            // VERIFIES IF THE URL EXISTS
+            guard let url = URL(string: "https://api.coindesk.com/v1/bpi/currentprice.json") else {return}
+            
+            // GETS DATA, RESPONSE CODE OR ERROR CODE FROM REQUEST
+            let task = URLSession.shared.dataTask(with: url) { data, response, error in
+                
+                // UNWRAP TO VERIFY DATA EXISTS
+                if let data = data {
+                    print("DATA: \(data)")
+                    print("STRING: \(String(decoding: data, as: UTF8.self))")
+                    
+                    // PASS DATA TO DECODING FUNCTION
+                    self.decodeJSONResponse(data: data)
+                }
+                
+                // UNWRAP TO VERIFY A RESPONSE STATUS CODE IS PROVIDED
+                if let response = response {
+                    print("RESPONSE: \(response)")
+                    
+                    // CAST RESPONSE TO GET ITS STATUS CODE
+                    if let httpResponse = response as? HTTPURLResponse {
+                        print("HTTP CODE: \(httpResponse.statusCode)")
+                    }
+                }
+                
+                // UNWRAP FOR ERROR OF THE REQUEST
+                if let error = error {
+                    print("Error: \(error)")
                 }
             }
-            if let error = error {
-                print("Error: \(error)")
+            
+            // TASK IS RESUMED IN BACKGROUND
+            task.resume()
+            
+        }
+
+        // MARK: WEB SERVICE DATA RECEIVED DECODING
+    
+        func decodeJSONResponse(data:Data){
+            
+            do {
+                // INSTANTIATE JSONDECODER FUNCTION FROM CODABLE PROTOCOL
+                let decoder = JSONDecoder()
+                
+                // ATTEMPT FOR DECODING OF SELFMADE STRUCT
+                let response = try decoder.decode(SearchResult.self, from: data)
+                
+                print("DECODED RESPONSE: \(response)")
+                
+                //searchItems = response.results
+                //currenciesRates = response.chartName
+                reloadTableView()
+                
+            } catch {
+                print("ERROR: \(error)")
             }
         }
         
-        //task.currentRequest?.httpMethod
-        // Se pasa a background thread
-        task.resume()
-        
-    }
-
-    // Decodificación de Respuesta de Web Service
-    func decodeJSONResponse(data:Data){
-        
-        do {
-            let decoder = JSONDecoder()
-            let response = try decoder.decode(SearchResult.self, from: data)
-            print("DECODED RESPONSE: \(response)")
-            searchItems = response.results
-            reloadTableView()
-        } catch {
-            print("ERROR: \(error)")
+        // MARK: SET WEB SERVICE RESPONSE TO MAIN QUEUE DUE TO APPEARANCE IN VIEW
+    
+        func reloadTableView(){
+            DispatchQueue.main.async {
+                self.setUpLoader(isLoading: false)
+                self.searchItemsTableView.reloadData()
+            }
         }
-    }
-    
-    // Recarga el TableView
-    func reloadTableView(){
-        DispatchQueue.main.async {
-            self.setUpLoader(isLoading: false)
-            self.searchItemsTableView.reloadData()
-        }
-    }
-    
-    func fixError(){
-        print("ERROR FIXED")
-    }
-    
-    func newCode(){
-        print("NEW CODE")
-    }
-
+        
 }
 
-// MARK: CLASSES EXTENSIONS
 
-// Adopción de Protocolo para los Datos de la Tabla
-extension ViewController: UITableViewDataSource{
-    
-    // Número de Celdas
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // Número de Celdas del arreglo
-        return searchItems.count
-    }
-    
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+// MARK: CLASS EXTENSIONS
+
+    // MARK: TABLEVIEWDATASOURCE PROTOCOL ADOPTION
+
+    extension ViewController: UITableViewDataSource{
         
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "ItemTableViewCell", for: indexPath) as? ItemTableViewCell {
-            let searchItem = searchItems[indexPath.row]
-            cell.setUpWith(searchItem: searchItem)
-            cell.sizeToFit()
-            cell.layoutIfNeeded()
-            return cell
-        
+        // NUMBER OF CELL PER SECTION
+        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            
+            //
+            return currenciesRates.count
         }
         
-        return UITableViewCell()
+        // ASSIGNMENT OF DATA TO CELL
+        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            
+            // TAKES REUSABLE CELL DEFINED IN TABLEVIEW SETUP AND ASSIGNS VALUES
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "ItemTableViewCell", for: indexPath) as? ItemTableViewCell {
+                
+                let currencies = currenciesRates[indexPath.row]
+                
+                cell.setUpCellWith(currency: currencies)
+
+                return cell
+            
+            }
+            
+            return UITableViewCell()
+        }
     }
-}
 

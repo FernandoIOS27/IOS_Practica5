@@ -30,7 +30,7 @@ class ItemTableViewCell: UITableViewCell {
     
     // MARK: FUNCTIONS
     
-    func initialSetUP(currency: CurrenciesRate){
+    func setUpCellWith(currency: CurrenciesRate){
         
         currencyLabel.text = currency.code
         

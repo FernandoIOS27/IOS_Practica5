@@ -16,69 +16,59 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jxb-dH-OPU">
-                                <rect key="frame" x="95" y="135" width="200" height="34"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="200" identifier="$TextViewWidth$" id="B1Q-Qc-X1F"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Repertorio de Música" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ek1-7M-ZaI">
-                                <rect key="frame" x="114" y="94" width="162" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" identifier="$TitleLabelHeight$" id="5LD-iw-e5x"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cryptocurrency" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ek1-7M-ZaI">
+                                <rect key="frame" x="135" y="74" width="120" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rgQ-9D-qKL">
-                                <rect key="frame" x="160.66666666666666" y="184" width="69" height="31"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Buscar"/>
-                                <connections>
-                                    <action selector="searchButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SpK-Pe-Irr"/>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="EpM-Ej-kkD">
-                                <rect key="frame" x="5" y="220" width="380" height="595"/>
+                                <rect key="frame" x="10" y="161" width="370" height="582"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="380" identifier="$TableViewWidth$" id="4GJ-q7-boc"/>
-                                </constraints>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="FLR-ZL-Svp">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="FLR-ZL-Svp">
                                 <rect key="frame" x="185" y="412" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Data Update" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lVH-JX-yjn">
+                                <rect key="frame" x="128.66666666666666" y="110" width="132.99999999999997" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Disclaimer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T1A-i5-tFK">
+                                <rect key="frame" x="155" y="773" width="80" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="EpM-Ej-kkD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" identifier="$TableViewCenterX$" id="0w9-xw-z6h"/>
-                            <constraint firstItem="ek1-7M-ZaI" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" identifier="$LabelToptoSafeArea$" id="2cz-KD-qF4"/>
-                            <constraint firstItem="EpM-Ej-kkD" firstAttribute="top" secondItem="rgQ-9D-qKL" secondAttribute="bottom" constant="5" identifier="$SearchTableViewtopButtomBottom$" id="AAD-Ri-vHH"/>
-                            <constraint firstItem="ek1-7M-ZaI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" identifier="$SearchLabelCenterX$" id="IFe-h2-59Q"/>
-                            <constraint firstItem="EpM-Ej-kkD" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="5" identifier="$TableViewBottomSafeAreaBottom$" id="JLw-lX-aEg"/>
-                            <constraint firstItem="Jxb-dH-OPU" firstAttribute="top" secondItem="ek1-7M-ZaI" secondAttribute="bottom" constant="20" identifier="$SearchTextFieldTopToSearchLabelBottom$" id="NEA-WX-SCY"/>
-                            <constraint firstItem="FLR-ZL-Svp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" identifier="$LoaderViewCenterX$" id="XIS-qt-Ffn"/>
-                            <constraint firstItem="rgQ-9D-qKL" firstAttribute="top" secondItem="Jxb-dH-OPU" secondAttribute="bottom" constant="15" identifier="$SearchButtontopSearchTextField$" id="bNa-T6-Vne"/>
-                            <constraint firstItem="rgQ-9D-qKL" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" identifier="$SearchButtomCenterX$" id="cec-EJ-Mbf"/>
-                            <constraint firstItem="FLR-ZL-Svp" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" identifier="$LoaderViewCenterY$" id="w37-4N-4fz"/>
-                            <constraint firstItem="Jxb-dH-OPU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" identifier="$SearchTextFieldCenterX$" id="zly-Re-J3d"/>
+                            <constraint firstItem="ek1-7M-ZaI" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" identifier="$LabelToptoSafeArea$" id="2cz-KD-qF4"/>
+                            <constraint firstItem="EpM-Ej-kkD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="7AJ-E7-LUG"/>
+                            <constraint firstAttribute="bottom" secondItem="T1A-i5-tFK" secondAttribute="bottom" constant="50" id="987-8p-P1D"/>
+                            <constraint firstItem="lVH-JX-yjn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="IOT-4Y-ojw"/>
+                            <constraint firstItem="lVH-JX-yjn" firstAttribute="top" secondItem="ek1-7M-ZaI" secondAttribute="bottom" constant="15" id="Ie7-GZ-67S"/>
+                            <constraint firstItem="T1A-i5-tFK" firstAttribute="top" secondItem="EpM-Ej-kkD" secondAttribute="bottom" constant="30" id="NQj-iD-6Ji"/>
+                            <constraint firstItem="T1A-i5-tFK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ZZp-RY-3RR"/>
+                            <constraint firstItem="ek1-7M-ZaI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="b9t-JI-7TX"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="EpM-Ej-kkD" secondAttribute="trailing" constant="10" id="djS-M6-ov0"/>
+                            <constraint firstItem="EpM-Ej-kkD" firstAttribute="top" secondItem="lVH-JX-yjn" secondAttribute="bottom" constant="30" id="gxr-H5-aZz"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="loaderView" destination="FLR-ZL-Svp" id="3Jr-ak-W7x"/>
-                        <outlet property="searchButton" destination="rgQ-9D-qKL" id="SDB-pR-2yw"/>
-                        <outlet property="searchItemsTableView" destination="EpM-Ej-kkD" id="6qx-RQ-BnV"/>
-                        <outlet property="searchLabel" destination="ek1-7M-ZaI" id="Koo-lV-f4S"/>
-                        <outlet property="searchTextField" destination="Jxb-dH-OPU" id="WJH-b9-DKO"/>
+                        <outlet property="cryptoNameLabel" destination="ek1-7M-ZaI" id="e8T-ke-DMT"/>
+                        <outlet property="disclaimerLabel" destination="T1A-i5-tFK" id="wth-mx-cGh"/>
+                        <outlet property="lastUpdateLabel" destination="lVH-JX-yjn" id="Kve-Kw-uSh"/>
+                        <outlet property="loaderView" destination="FLR-ZL-Svp" id="ZeR-04-Bxa"/>
+                        <outlet property="searchItemsTableView" destination="EpM-Ej-kkD" id="elo-VP-cfI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-26.086956521739133" y="43.526785714285715"/>
+            <point key="canvasLocation" x="-26.153846153846153" y="43.364928909952603"/>
         </scene>
     </scenes>
     <resources>
