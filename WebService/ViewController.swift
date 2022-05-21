@@ -46,7 +46,9 @@ class ViewController: UIViewController {
             super.viewDidLoad()
             // Do any additional setup after loading the view.
             setUpTableView()
-            
+            setUpUI()
+            setUpGeneralInfo(timeInfo: timeData, generalInfo: cryptoInfo)
+        
         }
         
     // MARK: METHODS & FUNCTIONS
@@ -137,13 +139,13 @@ class ViewController: UIViewController {
                 let decoder = JSONDecoder()
                 
                 // ATTEMPT FOR DECODING OF SELFMADE STRUCT
-                let allCurrencies = try decoder.decode(SearchResult.self, from: data)
+                let results = try decoder.decode(SearchResult.self, from: data)
                 
-                print("DECODED RESPONSE: \(allCurrencies)")
-                print("CRYPTOCURRENCY NAME: \(allCurrencies.chartName)")
-                print("DISCLAIMER: \(allCurrencies.disclaimer)")
+                print("DECODED RESPONSE: \(results)")
+                print("CRYPTOCURRENCY NAME: \(results.chartName)")
+                print("DISCLAIMER: \(results.disclaimer)")
                 
-                currencies = allCurrencies.bpi
+                currencies = results.bpi
                 currenciesData = currencies.currencyData
                 
                 reloadTableView()
