@@ -14,9 +14,10 @@ struct SearchResult: Codable{
     let bpi: [Currencies]
     
     enum CodingKeys: String,CodingKey {
+        
         case time
         case disclaimer
         case chartName
-        case currencies = "bpi"
+        case bpi
     }
 }

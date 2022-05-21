@@ -14,7 +14,7 @@ struct Currencies: Codable {
     let GBP: String
     let EUR: String
     
-    enum CodingKeys: String, CodingKey{
+    enum CodingKeys: String, CodingKey {
         
         case USD
         case GBP
