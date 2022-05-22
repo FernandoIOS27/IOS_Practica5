@@ -11,13 +11,13 @@ struct SearchResult: Codable{
     let time: Time
     let disclaimer: String
     let chartName: String
-    //let bpi: Currencies
+    let bpi: Currencies
     
     enum CodingKeys: String,CodingKey {
         
         case time
         case disclaimer
         case chartName
-        //case bpi
+        case bpi
     }
 }

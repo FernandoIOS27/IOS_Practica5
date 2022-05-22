@@ -26,10 +26,6 @@
                                 <rect key="frame" x="10" y="161" width="370" height="618"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="FLR-ZL-Svp">
-                                <rect key="frame" x="185" y="412" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Data Update" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lVH-JX-yjn">
                                 <rect key="frame" x="128.66666666666666" y="110" width="132.99999999999997" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -63,7 +59,6 @@
                         <outlet property="cryptoNameLabel" destination="ek1-7M-ZaI" id="e8T-ke-DMT"/>
                         <outlet property="disclaimerLabel" destination="T1A-i5-tFK" id="wth-mx-cGh"/>
                         <outlet property="lastUpdateLabel" destination="lVH-JX-yjn" id="Kve-Kw-uSh"/>
-                        <outlet property="loaderView" destination="FLR-ZL-Svp" id="ZeR-04-Bxa"/>
                         <outlet property="searchItemsTableView" destination="EpM-Ej-kkD" id="elo-VP-cfI"/>
                     </connections>
                 </viewController>

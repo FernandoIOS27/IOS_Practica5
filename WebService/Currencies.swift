@@ -10,11 +10,15 @@ import Foundation
 
 struct Currencies: Codable {
     
-    let currencyData: [Currencydata]
+    let USD: Currencydata
+    let GBP: Currencydata
+    let EUR: Currencydata
     
     enum CodingKeys: String, CodingKey {
         
-        case currencyData
+        case USD
+        case GBP
+        case EUR
         
     }
     

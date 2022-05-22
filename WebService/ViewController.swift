@@ -8,6 +8,7 @@
 // MARK: FRAMEWORKS & LIBRARIES
 
     import UIKit
+    import Foundation
 
 
 // MARK: VIEW CONTROLLER
@@ -20,11 +21,17 @@ class ViewController: UIViewController {
         var cryptocurrencyName: String! = ""
         var disclaimerInfo: String! = ""
         // ARRAY OF CURRENCIES
-        var currencies: Currencies = Currencies(currencyData: [])
-        // ARRAY OF CURRENCIES DATA
-        var currenciesData: [Currencydata] = []
+    
+        var currencies: [Currencydata] = []
+    
+        var gbpCurrency: Currencydata = Currencydata(code: "", symbol: "", rate: "", description: "", rate_float: 0)
+        var usdCurrency: Currencydata = Currencydata(code: "", symbol: "", rate: "", description: "", rate_float: 0)
+        var eurCurrency: Currencydata = Currencydata(code: "", symbol: "", rate: "", description: "", rate_float: 0)
+    
         // ARRAY OF TIME DATA
         var timeData: Time = Time(updated: "", updatedISO: "", updateduk: "")
+    
+        //var symbol: String! = ""
     
     // MARK: OUTLETS
 
@@ -32,7 +39,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var lastUpdateLabel: UILabel!
     @IBOutlet weak var disclaimerLabel: UILabel!
     @IBOutlet weak var searchItemsTableView: UITableView!
-    @IBOutlet weak var loaderView: UIActivityIndicatorView!
+    //@IBOutlet weak var loaderView: UIActivityIndicatorView!
+    //@IBOutlet weak var currencySymbolHTML: UILabel!
     
     // MARK: ACTIONS
     
@@ -55,8 +63,8 @@ class ViewController: UIViewController {
 
         func setUpUI(){
             // ACTIVITY INDICATOR NO LOADING HIDDING
-            loaderView.stopAnimating()
-            loaderView.isHidden = true
+            //loaderView.stopAnimating()
+            //loaderView.isHidden = true
 
             disclaimerLabel.numberOfLines = 0
             
@@ -65,6 +73,10 @@ class ViewController: UIViewController {
         // MARK: CRYPTOCURRENCY INFO
     
         func setUpGeneralInfo(){
+            
+            currencies.append(usdCurrency)
+            currencies.append(gbpCurrency)
+            currencies.append(eurCurrency)
             
             lastUpdateLabel.text = timeData.updated
             
@@ -84,8 +96,8 @@ class ViewController: UIViewController {
         
         func setUpLoader(isLoading: Bool){
             // Al poner el "!" Estamos negando un valor (True lo mostrará)
-            loaderView.isHidden = !isLoading
-            isLoading ? loaderView.startAnimating(): loaderView.stopAnimating()
+            //loaderView.isHidden = !isLoading
+            //isLoading ? loaderView.startAnimating(): loaderView.stopAnimating()
         }
         
         // MARK: LINK BETWEEN TABLEVIEW AND CELL CONTROLLER AND VIEW OF NIB
@@ -155,6 +167,10 @@ class ViewController: UIViewController {
                 print("DISCLAIMER: \(results.disclaimer)")
                 print("TIME UPDATED: \(results.time.updated)")
                 
+                usdCurrency = results.bpi.USD
+                eurCurrency = results.bpi.EUR
+                gbpCurrency = results.bpi.GBP
+                
                 cryptocurrencyName = results.chartName
                 disclaimerInfo = results.disclaimer
                 timeData = results.time
@@ -179,7 +195,7 @@ class ViewController: UIViewController {
 }
 
 
-// MARK: CLASS EXTENSIONS
+// MARK: EXTENSIONS
 
     // MARK: TABLEVIEWDATASOURCE PROTOCOL ADOPTION
 
@@ -188,8 +204,7 @@ class ViewController: UIViewController {
         // NUMBER OF CELL PER SECTION
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             
-            //
-            return currenciesData.count
+            return currencies.count
         }
         
         // ASSIGNMENT OF DATA TO CELL
@@ -198,9 +213,7 @@ class ViewController: UIViewController {
             // TAKES REUSABLE CELL DEFINED IN TABLEVIEW SETUP AND ASSIGNS VALUES
             if let cell = tableView.dequeueReusableCell(withIdentifier: "ItemTableViewCell", for: indexPath) as? ItemTableViewCell {
                 
-                let currencyInfo = currenciesData[indexPath.row]
-                
-                cell.setUpCellWith(currency: currencyInfo)
+                cell.setUpCellWith(currency: currencies[indexPath.row])
 
                 return cell
             
@@ -209,4 +222,3 @@ class ViewController: UIViewController {
             return UITableViewCell()
         }
     }
-
