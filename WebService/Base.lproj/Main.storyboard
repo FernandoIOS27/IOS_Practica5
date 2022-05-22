@@ -23,7 +23,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="EpM-Ej-kkD">
-                                <rect key="frame" x="10" y="161" width="370" height="582"/>
+                                <rect key="frame" x="10" y="161" width="370" height="618"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="FLR-ZL-Svp">
@@ -36,8 +36,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Disclaimer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T1A-i5-tFK">
-                                <rect key="frame" x="155" y="773" width="80" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Disclaimer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T1A-i5-tFK">
+                                <rect key="frame" x="10" y="784" width="370" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -48,14 +48,15 @@
                         <constraints>
                             <constraint firstItem="ek1-7M-ZaI" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" identifier="$LabelToptoSafeArea$" id="2cz-KD-qF4"/>
                             <constraint firstItem="EpM-Ej-kkD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="7AJ-E7-LUG"/>
-                            <constraint firstAttribute="bottom" secondItem="T1A-i5-tFK" secondAttribute="bottom" constant="50" id="987-8p-P1D"/>
                             <constraint firstItem="lVH-JX-yjn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="IOT-4Y-ojw"/>
+                            <constraint firstItem="T1A-i5-tFK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="IcM-Mp-BkR"/>
                             <constraint firstItem="lVH-JX-yjn" firstAttribute="top" secondItem="ek1-7M-ZaI" secondAttribute="bottom" constant="15" id="Ie7-GZ-67S"/>
-                            <constraint firstItem="T1A-i5-tFK" firstAttribute="top" secondItem="EpM-Ej-kkD" secondAttribute="bottom" constant="30" id="NQj-iD-6Ji"/>
-                            <constraint firstItem="T1A-i5-tFK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ZZp-RY-3RR"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="T1A-i5-tFK" secondAttribute="bottom" constant="5" id="RbY-vr-VaB"/>
                             <constraint firstItem="ek1-7M-ZaI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="b9t-JI-7TX"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="EpM-Ej-kkD" secondAttribute="trailing" constant="10" id="djS-M6-ov0"/>
                             <constraint firstItem="EpM-Ej-kkD" firstAttribute="top" secondItem="lVH-JX-yjn" secondAttribute="bottom" constant="30" id="gxr-H5-aZz"/>
+                            <constraint firstItem="T1A-i5-tFK" firstAttribute="top" secondItem="EpM-Ej-kkD" secondAttribute="bottom" constant="5" id="t3V-Qg-Rsw"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="T1A-i5-tFK" secondAttribute="trailing" constant="10" id="yef-C5-hAg"/>
                         </constraints>
                     </view>
                     <connections>

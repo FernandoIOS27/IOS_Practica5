@@ -17,16 +17,14 @@ class ViewController: UIViewController {
     // MARK: PROPERTIES
     
         // CRYPTO NAME & DISCLAIMER
-        let cryptocurrencyName: String! = ""
-        let disclaimerInfo: String! = ""
+        var cryptocurrencyName: String! = ""
+        var disclaimerInfo: String! = ""
         // ARRAY OF CURRENCIES
         var currencies: Currencies = Currencies(currencyData: [])
         // ARRAY OF CURRENCIES DATA
         var currenciesData: [Currencydata] = []
         // ARRAY OF TIME DATA
         var timeData: Time = Time(updated: "", updatedISO: "", updateduk: "")
-        
-        let cryptoInfo: SearchResult = SearchResult(time: Time(updated: "", updatedISO: "", updateduk: ""), disclaimer: "", chartName: "", bpi: Currencies(currencyData: []))
     
     // MARK: OUTLETS
 
@@ -44,11 +42,11 @@ class ViewController: UIViewController {
     
         override func viewDidLoad() {
             super.viewDidLoad()
-            // Do any additional setup after loading the view.
+            
+            searchInCoinDesk()
             setUpTableView()
             setUpUI()
-            setUpGeneralInfo(timeInfo: timeData, generalInfo: cryptoInfo)
-        
+            
         }
         
     // MARK: METHODS & FUNCTIONS
@@ -59,15 +57,22 @@ class ViewController: UIViewController {
             // ACTIVITY INDICATOR NO LOADING HIDDING
             loaderView.stopAnimating()
             loaderView.isHidden = true
+
+            disclaimerLabel.numberOfLines = 0
+            
         }
     
         // MARK: CRYPTOCURRENCY INFO
     
-        func setUpGeneralInfo(timeInfo: Time, generalInfo: SearchResult ){
+        func setUpGeneralInfo(){
             
-            cryptoNameLabel.text = generalInfo.chartName
-            lastUpdateLabel.text = timeInfo.updated
-            disclaimerLabel.text = generalInfo.disclaimer
+            if let crypto = cryptocurrencyName,
+               let disclaimer = disclaimerInfo {
+                cryptoNameLabel.text = crypto
+                disclaimerLabel.text = disclaimer
+            } else {
+                print("ERROR ASSIGNING NAMES")
+            }
             
         }
         
@@ -92,7 +97,7 @@ class ViewController: UIViewController {
         
         // MARK: WEB SERVICE REQUEST VIA API
         
-        func searchInItunes(){
+        func searchInCoinDesk(){
             
             // VERIFIES IF THE URL EXISTS
             guard let url = URL(string: "https://api.coindesk.com/v1/bpi/currentprice.json") else {return}
@@ -111,7 +116,7 @@ class ViewController: UIViewController {
                 
                 // UNWRAP TO VERIFY A RESPONSE STATUS CODE IS PROVIDED
                 if let response = response {
-                    print("RESPONSE: \(response)")
+                    print("WEB SERVICE REQUEST RESPONSE: \(response)")
                     
                     // CAST RESPONSE TO GET ITS STATUS CODE
                     if let httpResponse = response as? HTTPURLResponse {
@@ -121,7 +126,7 @@ class ViewController: UIViewController {
                 
                 // UNWRAP FOR ERROR OF THE REQUEST
                 if let error = error {
-                    print("Error: \(error)")
+                    print("WEB SERVICE REQUEST ERROR: \(error)")
                 }
             }
             
@@ -145,13 +150,13 @@ class ViewController: UIViewController {
                 print("CRYPTOCURRENCY NAME: \(results.chartName)")
                 print("DISCLAIMER: \(results.disclaimer)")
                 
-                currencies = results.bpi
-                currenciesData = currencies.currencyData
+                cryptocurrencyName = results.chartName
+                disclaimerInfo = results.disclaimer
                 
                 reloadTableView()
                 
             } catch {
-                print("ERROR: \(error)")
+                print("DECODING ERROR: \(error)")
             }
         }
         
@@ -159,6 +164,7 @@ class ViewController: UIViewController {
     
         func reloadTableView(){
             DispatchQueue.main.async {
+                self.setUpGeneralInfo()
                 self.setUpLoader(isLoading: false)
                 self.searchItemsTableView.reloadData()
             }
