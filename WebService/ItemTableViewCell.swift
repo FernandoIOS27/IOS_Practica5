@@ -23,7 +23,6 @@ class ItemTableViewCell: UITableViewCell {
     // MARK: Outlets
     
     @IBOutlet weak var currencyLabel: UILabel!
-    @IBOutlet weak var symbolLabel: UILabel!
     @IBOutlet weak var currentRateLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var precisionRateLabel: UILabel!
@@ -36,13 +35,29 @@ class ItemTableViewCell: UITableViewCell {
         
         descriptionLabel.text = currency.description
         
-        symbolLabel.text = currency.symbol
+        var symbol = currency.symbol
         
-        currentRateLabel.text = currency.rate
+        html2string(text: &symbol)
+        
+        currentRateLabel.text = "\(String(symbol)) \(currency.rate)"
         
         precisionRateLabel.text = "\(currency.rate_float)"
     }
 
+    func html2string(text: inout String){
+        if text == "&#36;" {
+            
+            text = "$"
+            
+        } else {
+            if text == "&pound;"{
+                text = "￡"
+                } else {
+                    text = "€"
+                }
+            }
+        }
+    
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

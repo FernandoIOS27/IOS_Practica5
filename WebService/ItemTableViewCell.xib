@@ -40,12 +40,6 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JKT-Qi-jyB">
-                        <rect key="frame" x="239" y="15" width="11" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                 </subviews>
                 <viewLayoutGuide key="safeArea" id="tNg-6H-Ej0"/>
                 <constraints>
@@ -56,11 +50,9 @@
                     <constraint firstItem="GYH-SY-nf9" firstAttribute="top" secondItem="tNg-6H-Ej0" secondAttribute="top" constant="15" id="Y8D-UL-WYh"/>
                     <constraint firstItem="tNg-6H-Ej0" firstAttribute="bottom" secondItem="u9u-9w-xeZ" secondAttribute="bottom" constant="15" id="ZEd-5H-wdk"/>
                     <constraint firstItem="4aQ-hV-lQb" firstAttribute="top" secondItem="tNg-6H-Ej0" secondAttribute="top" constant="15" id="abb-p4-5dD"/>
-                    <constraint firstItem="4aQ-hV-lQb" firstAttribute="leading" secondItem="JKT-Qi-jyB" secondAttribute="trailing" constant="5" id="awa-qQ-gGf"/>
                     <constraint firstItem="cXS-16-bdM" firstAttribute="top" secondItem="4aQ-hV-lQb" secondAttribute="bottom" constant="16" id="dXo-n5-iAV"/>
                     <constraint firstItem="u9u-9w-xeZ" firstAttribute="top" secondItem="GYH-SY-nf9" secondAttribute="bottom" constant="16" id="i29-Rw-rgs"/>
                     <constraint firstItem="GYH-SY-nf9" firstAttribute="leading" secondItem="tNg-6H-Ej0" secondAttribute="leading" constant="15" id="vS5-Pm-hGL"/>
-                    <constraint firstItem="JKT-Qi-jyB" firstAttribute="top" secondItem="tNg-6H-Ej0" secondAttribute="top" constant="15" id="yHp-Ug-0Jv"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -69,7 +61,6 @@
                 <outlet property="currentRateLabel" destination="4aQ-hV-lQb" id="8IC-rY-OQi"/>
                 <outlet property="descriptionLabel" destination="u9u-9w-xeZ" id="DZd-hT-Q1S"/>
                 <outlet property="precisionRateLabel" destination="cXS-16-bdM" id="cPd-OA-sd7"/>
-                <outlet property="symbolLabel" destination="JKT-Qi-jyB" id="Kp0-pr-vD9"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="69.642857142857139"/>
         </tableViewCell>
