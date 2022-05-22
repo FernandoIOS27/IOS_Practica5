@@ -8,14 +8,14 @@
 import Foundation
 
 struct SearchResult: Codable{
-    //let time: Time
+    let time: Time
     let disclaimer: String
     let chartName: String
     //let bpi: Currencies
     
     enum CodingKeys: String,CodingKey {
         
-        //case time
+        case time
         case disclaimer
         case chartName
         //case bpi

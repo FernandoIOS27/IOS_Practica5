@@ -66,12 +66,16 @@ class ViewController: UIViewController {
     
         func setUpGeneralInfo(){
             
+            lastUpdateLabel.text = timeData.updated
+            
             if let crypto = cryptocurrencyName,
                let disclaimer = disclaimerInfo {
+                
                 cryptoNameLabel.text = crypto
                 disclaimerLabel.text = disclaimer
+                
             } else {
-                print("ERROR ASSIGNING NAMES")
+                print("ERROR ASSIGNING DECODED VALUES TO LABELS")
             }
             
         }
@@ -149,9 +153,11 @@ class ViewController: UIViewController {
                 print("DECODED RESPONSE: \(results)")
                 print("CRYPTOCURRENCY NAME: \(results.chartName)")
                 print("DISCLAIMER: \(results.disclaimer)")
+                print("TIME UPDATED: \(results.time.updated)")
                 
                 cryptocurrencyName = results.chartName
                 disclaimerInfo = results.disclaimer
+                timeData = results.time
                 
                 reloadTableView()
                 
